@@ -1,0 +1,372 @@
+/* CSS Reset */
+:root {
+  --Dark-mode-el: hsl(209, 23%, 22%);
+  --Dark-mode-bg: hsl(207, 26%, 17%);
+  --Light-mode-txt: hsl(200, 15%, 8%);
+  --light-mode-input: hsl(0, 0%, 52%);
+  --light-mode-bg: hsl(0, 0%, 98%);
+  --white: hsl(0, 0%, 100%);
+  --dark-text-white: var(--white);
+  --light-el: var(--white);
+  --shadow: 0 5px 10px rgba(0, 0, 0, 0.08);
+  --transition-time: 0.3s;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  display: inline-block;
+  text-decoration: none;
+}
+span {
+  display: inline-block;
+}
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  border: 0;
+  transition: scale var(--transition-time);
+}
+button:active {
+  scale: 0.95;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Nunito Sans", sans-serif;
+  color: var(--Light-mode-txt);
+  background-color: var(--light-mode-bg);
+  font-size: 14px;
+}
+
+/* End CSS Reset */
+
+.container {
+  padding: 0 15px;
+  margin-inline: auto;
+}
+
+/* Mobile */
+@media (min-width: 576px) {
+  .container {
+    width: 540px;
+  }
+}
+/* Small */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+/* Medium */
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+/* Large */
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+/* Desktop */
+@media (min-width: 1440px) {
+  .container {
+    width: 1400px;
+  }
+}
+
+header {
+  box-shadow: var(--shadow);
+  padding-block: 15px;
+  background-color: var(--light-el);
+}
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header h1 {
+  font-size: 1.5rem;
+}
+header input {
+  display: none;
+}
+header .dark {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 17px;
+  cursor: pointer;
+}
+@media (max-width: 767px) {
+  header h1 {
+    font-size: 1.1rem;
+  }
+  header .dark {
+    font-size: 0.9rem;
+  }
+}
+header .fa-solid.fa-moon {
+  display: none;
+}
+
+section.search {
+  margin-block: 50px;
+}
+section.search .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  gap: 20px;
+}
+@media (max-width: 767px) {
+  section.search .container {
+    flex-direction: column;
+  }
+}
+section.search .search_name {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: var(--light-el);
+  color: var(--light-mode-input);
+  border-radius: 10px;
+  width: 40%;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+@media (max-width: 767px) {
+  section.search .search_name {
+    width: 100%;
+  }
+}
+section.search .search_name i {
+  cursor: pointer;
+}
+section.search .search_name input {
+  caret-color: var(--light-mode-input);
+  color: inherit;
+  background-color: inherit;
+  border: none;
+  outline: none;
+  padding: inherit;
+  flex: 1;
+}
+section.search .search_name input::placeholder {
+  color: var(--light-mode-input);
+}
+section.search .filter {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background-color: var(--light-el);
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  font-weight: 600;
+  position: relative;
+}
+section.search .filter i {
+  rotate: -90deg;
+  transition: 0.8s;
+}
+section.search .region_list {
+  position: absolute;
+  background-color: var(--light-el);
+  border-radius: 10px;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  width: 172px;
+  right: 15px;
+  top: 55px;
+  box-shadow: var(--shadow);
+  max-height: 0.0001px;
+  overflow: hidden;
+  transition: 1s;
+}
+@media (max-width: 767px) {
+  section.search .region_list {
+    right: 50%;
+    transform: translateX(50%);
+    top: 130px;
+  }
+}
+section.search .region_list .region {
+  padding-block: 7.5px;
+  cursor: pointer;
+  transition: color var(--transition-time);
+}
+section.search .region_list .region:hover {
+  color: hsl(0, 0%, 52%);
+}
+
+section.countries .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 40px;
+}
+.card,
+.card.details {
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  background-color: var(--light-el);
+}
+.card.details {
+  position: absolute;
+  height: 95%;
+  width: 100%;
+  font-size: 1.2rem;
+  box-shadow: none;
+  background-color: var(--light-mode-bg);
+}
+.card.details .container {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  padding-top: 100px;
+  padding-bottom: 40px;
+  margin-top: 2px;
+  position: relative;
+  cursor: auto;
+}
+@media (max-width: 1300px) {
+  .card.details .container {
+    flex-direction: column;
+  }
+}
+.card.details .back {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  top: 30px;
+  left: 30px;
+  background-color: var(--light-el);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  padding: 10px 30px;
+  border-radius: 10px;
+  color: inherit;
+}
+.card img {
+  max-width: 100%;
+}
+.card.details img {
+  flex: 1;
+  max-width: 50%;
+}
+.card .content {
+  padding: 15px;
+}
+.card.details .content {
+  flex: 1;
+}
+.card.details .content h2 {
+  font-size: 2rem;
+}
+.card.details .details-con {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  margin-block: 30px 50px;
+}
+@media (max-width: 767px) {
+  .card.details img {
+    max-width: 90%;
+  }
+  .card.details .details-con {
+    flex-direction: column;
+    gap: 50px;
+  }
+}
+.card .content .country_name,
+.card.details .content .country_name {
+  font-weight: 800;
+  margin-block-end: 15px;
+}
+.card .content .details,
+.card.details .content .details {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.card .content .details li,
+.card.details .content .details li {
+  font-weight: 600;
+  display: flex;
+  gap: 10px;
+}
+.card .content .details li span,
+.card.details .content .details li span {
+  font-weight: normal;
+}
+.card.details .content .borders {
+  font-weight: 600;
+  font-size: inherit;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+.card.details .content .borders span {
+  font-weight: normal;
+  padding: 8px 30px;
+  border-radius: 10px;
+  background-color: var(--light-el);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  font-size: 1rem;
+}
+
+html:has(header input:checked) {
+  --light-mode-bg: var(--Dark-mode-bg);
+  --Light-mode-txt: var(--white);
+  --light-el: var(--Dark-mode-el);
+  --light-mode-input: var(--white);
+}
+html:has(header input:checked) header .fa-regular.fa-moon {
+  display: none;
+}
+html:has(header input:checked) header .fa-solid.fa-moon {
+  display: block;
+}
+
+.d-none {
+  display: none;
+}
+
+.d-block {
+  display: block;
+}
+
+section.search .region_list.show-filter {
+  padding: 15px 20px;
+  max-height: 250px;
+}
+
+section.search .filter i.rotate {
+  rotate: 0deg;
+}
