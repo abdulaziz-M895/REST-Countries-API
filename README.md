@@ -16,7 +16,7 @@ Users should be able to:
 
 ### Screenshot
 
-![](./design/desktop-preview.jpg, alt="Screenshot")
+![](./design/desktop-preview.jpg)
 
 ## Features
 
