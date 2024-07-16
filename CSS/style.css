@@ -277,7 +277,7 @@ section.countries .container {
 }
 .card.details img {
   flex: 1;
-  max-width: 50%;
+  max-width: 80%;
 }
 .card .content {
   padding: 15px;
@@ -296,7 +296,7 @@ section.countries .container {
 }
 @media (max-width: 767px) {
   .card.details img {
-    max-width: 90%;
+    max-width: 100%;
   }
   .card.details .details-con {
     flex-direction: column;
