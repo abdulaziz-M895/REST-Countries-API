@@ -18,3 +18,5 @@ tailwind.config.js
 
 *.md
 !README.md
+
+.vscode

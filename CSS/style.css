@@ -24,6 +24,17 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Nunito Sans", sans-serif;
+  color: var(--Light-mode-txt);
+  background-color: var(--light-mode-bg);
+  font-size: 14px;
+}
+
 a {
   color: inherit;
   display: inline-block;
@@ -46,17 +57,6 @@ button:active {
 ul,
 ol {
   list-style: none;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: "Nunito Sans", sans-serif;
-  color: var(--Light-mode-txt);
-  background-color: var(--light-mode-bg);
-  font-size: 14px;
 }
 
 /* End CSS Reset */
@@ -107,13 +107,19 @@ header .container {
   justify-content: space-between;
   align-items: center;
 }
-header h1 {
+header .title {
   font-size: 1.5rem;
+  cursor: pointer;
 }
 header input {
-  display: none;
+  appearance: none;
 }
-header .dark {
+header .dark-mode {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+header .dark__label {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -124,7 +130,7 @@ header .dark {
   header h1 {
     font-size: 1.1rem;
   }
-  header .dark {
+  header .dark__label {
     font-size: 0.9rem;
   }
 }
@@ -207,7 +213,7 @@ section.search .region_list {
   box-shadow: var(--shadow);
   max-height: 0.0001px;
   overflow: hidden;
-  transition: 1s;
+  transition: max-height 1s, padding 1s;
 }
 @media (max-width: 767px) {
   section.search .region_list {
@@ -238,7 +244,6 @@ section.countries .container {
 }
 .card.details {
   position: absolute;
-  height: 95%;
   width: 100%;
   font-size: 1.2rem;
   box-shadow: none;
@@ -246,7 +251,7 @@ section.countries .container {
 }
 .card.details .container {
   display: flex;
-  gap: 40px;
+  gap: 30px;
   align-items: center;
   padding-top: 100px;
   padding-bottom: 40px;
@@ -254,7 +259,7 @@ section.countries .container {
   position: relative;
   cursor: auto;
 }
-@media (max-width: 1300px) {
+@media (max-width: 1015px) {
   .card.details .container {
     flex-direction: column;
   }
@@ -277,13 +282,24 @@ section.countries .container {
 }
 .card.details img {
   flex: 1;
-  max-width: 80%;
+  max-width: 50%;
+}
+@media (max-width: 1015px) {
+  .card.details img {
+    max-width: 90%;
+  }
 }
 .card .content {
   padding: 15px;
 }
 .card.details .content {
   flex: 1;
+  padding: 0;
+}
+@media (max-width: 1015px) {
+  .card.details .content {
+    width: 90%;
+  }
 }
 .card.details .content h2 {
   font-size: 2rem;

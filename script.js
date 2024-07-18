@@ -55,7 +55,7 @@ function createCountryCards(data) {
     card.dataset.subregion = country.subregion;
     card.dataset.flag = country.flag;
     card.dataset.population = population;
-    card.dataset.capital = country.capital;
+    card.dataset.capital = country.capital || "Unknown";
     card.dataset.topLevelDomain = country.topLevelDomain[0];
     card.dataset.currencies = JSON.stringify(country.currencies);
     card.dataset.languages = JSON.stringify(country.languages);
@@ -68,7 +68,9 @@ function createCountryCards(data) {
         <ul class="details">
           <li class="population">Population: <span>${population}</span></li>
           <li class="region">Region: <span>${country.region}</span></li>
-          <li class="capital">Capital: <span>${country.capital}</span></li>
+          <li class="capital">Capital: <span>${
+            country.capital || "Unknown"
+          }</span></li>
         </ul>
       </div>`;
 
@@ -137,7 +139,7 @@ function countryDetails() {
       const subregion = card.dataset.subregion;
       const flag = card.dataset.flag;
       const population = card.dataset.population;
-      const capital = card.dataset.capital;
+      const capital = card.dataset.capital || "Unknown";
       const topLevelDomain = card.dataset.topLevelDomain;
       let currencies = undefined;
       let languages = undefined;
@@ -186,12 +188,14 @@ function countryDetails() {
       main.after(article);
 
       let currenciesSpan = document.querySelector(".currencies span");
-      for (let i = 0; i < currencies.length; i++) {
-        let currName = currencies[i].name;
-        if (i < currencies.length - 1) {
-          currName = currencies[i].name + ", ";
+      if (currencies) {
+        for (let i = 0; i < currencies.length; i++) {
+          let currName = currencies[i].name;
+          if (i < currencies.length - 1) {
+            currName = currencies[i].name + ", ";
+          }
+          currenciesSpan.innerHTML += currName;
         }
-        currenciesSpan.innerHTML += currName;
       }
 
       let languagesSpan = document.querySelector(".languages span");
@@ -213,10 +217,20 @@ function countryDetails() {
         }
       }
 
-      document.querySelector(".back").addEventListener("click", () => {
-        article.remove();
-        main.classList.remove("d-none");
-      });
+      article.querySelector("img").scrollIntoView({ behavior: "smooth" });
+
+      const goBackArr = [
+        document.querySelector(".back"),
+        document.querySelector("h1.title"),
+      ];
+
+      goBackArr.forEach((element) =>
+        element.addEventListener("click", () => {
+          article.remove();
+          main.classList.remove("d-none");
+        })
+      );
+
     });
   });
 }
@@ -225,8 +239,10 @@ function countryDetails() {
 document.querySelector(".filter").addEventListener("click", (e) => {
   const regionList = document.querySelector(".region_list");
   const icon = document.querySelector(".filter i");
+
   regionList.classList.toggle("show-filter");
   icon.classList.toggle("rotate");
+
   e.stopPropagation(); // Prevent event from bubbling up to the document
 });
 
@@ -235,6 +251,7 @@ document.documentElement.addEventListener("click", (e) => {
   const regionList = document.querySelector(".region_list");
   const regions = document.querySelectorAll(".region_list .region");
   const icon = document.querySelector(".filter i");
+  const darkMode = document.querySelector(".dark-mode");
 
   let clickInsideRegion = Array.from(regions).some(
     (region) => e.target === region
@@ -242,10 +259,13 @@ document.documentElement.addEventListener("click", (e) => {
   let clickInsideRegionList =
     e.target === regionList || regionList.contains(e.target);
 
+  let clickOnDarkMode = darkMode.contains(e.target);
+
   if (
     !clickInsideRegion &&
     !clickInsideRegionList &&
-    !e.target.matches(".filter")
+    !e.target.matches(".filter") &&
+    !clickOnDarkMode
   ) {
     regionList.classList.remove("show-filter");
     icon.classList.remove("rotate");
